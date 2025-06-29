@@ -175,12 +175,14 @@ const useFormStore = create<FormStore>()(
               ],
             };
           }),
-        updateElement: (id, updated) =>
-          set((state) => ({
-            elements: state.elements.map((el) =>
-              el.id === id ? { ...el, ...updated } : el
-            ),
-          })),
+      updateElement: (id, updated) =>
+      set((state) => ({
+        elements: state.elements.map((el) =>
+          el.id === id
+            ? ({ ...el, ...updated } as FormElement)
+            : el
+        ),
+      })),
         removeElement: (id) =>
           set((state) => ({
             elements: state.elements.filter((el) => el.id !== id),
