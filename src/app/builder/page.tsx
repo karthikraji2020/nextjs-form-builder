@@ -1,33 +1,10 @@
 "use client";
 
-import { useState, DragEvent, FormEvent } from "react";
-import { persist, devtools } from "zustand/middleware";
-import { devtools as devtoolsPlugin } from "zustand/middleware-devtools-extension";
-import {
-  DndContext,
-  closestCenter,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { v4 as uuidv4 } from "uuid";
-import { useShallow } from "zustand/react/shallow";
-import { create } from "zustand";
-import { GripVertical, Trash } from "lucide-react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import clsx from "clsx";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -35,7 +12,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import clsx from "clsx";
+import { GripVertical, Trash } from "lucide-react";
+import { DragEvent, FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { useShallow } from "zustand/react/shallow";
 
 import { Plus, Trash2 } from "lucide-react"; // for option add/remove icons
 
@@ -114,7 +113,7 @@ const elementTypes: {
   { type: "select", label: "Select" },
   { type: "radio", label: "Radio Group" },
 ];
-
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 const formElementDefaults: Record<Exclude<FormElementType, "submit">, any> = {
   text: { label: "Text Input", required: false, value: "" },
   textarea: { label: "Textarea", required: false, value: "" },
